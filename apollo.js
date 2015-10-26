@@ -76,6 +76,15 @@ var APOLLO = APOLLO || (function() {
 				console.log('adblock off');
 			return false;
 		},
+		
+		cookiesEnabled : function () {
+   var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+   if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled) { 
+    document.cookie="testcookie";
+    cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+	  }
+  return (cookieEnabled);
+  },
 
 	}
 }());
@@ -87,6 +96,12 @@ if (APOLLO.init()) {
 			} else {
 				adblockStatus=false;
 			}
+			if (APOLLO.cookiesEnabled()) {
+				cookieStatus=true;
+			} else {
+				cookieStatus=false;
+			}
 			console.log(adblockStatus);
+			console.log(cookieStatus);
 	}, APOLLO.timeout);
 }
