@@ -6,7 +6,7 @@ var APOLLO = APOLLO || (function() {
 	var scriptName = 'apollo.js';
 	var defaultID = 'apollo_adblock_placeholder';
 	var analytics = {};
-	var adblockStatus ='off';
+	var adblockStatus = false;
 	var _args = {
 		'id' : defaultID,
 		'sampling' : 100, // percentage of pageviews that we'll test for adblocking
@@ -70,12 +70,10 @@ var APOLLO = APOLLO || (function() {
 			if ((tag.length < 1) || (tag.clientHeight < 1)) {
 				if (_args.verbose)
 					console.log('adblock on');
-					adblockStatus='on';
 				return true;
 			}
 			if (_args.verbose)
 				console.log('adblock off');
-				dblockStatus='off';
 			return false;
 		},
 
@@ -85,9 +83,9 @@ var APOLLO = APOLLO || (function() {
 if (APOLLO.init()) {
 	setTimeout(function() {
 			if (APOLLO.adblocked()) {
-				adblockStatus='on';
+				adblockStatus=true;
 			} else {
-				adblockStatus='off';
+				adblockStatus=false;
 			}
 			console.log(adblockStatus);
 	}, APOLLO.timeout);
