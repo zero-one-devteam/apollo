@@ -54,7 +54,9 @@ var APOLLO = APOLLO || (function() {
 			if (_args.id == defaultID) {
 				if (_args.verbose)
 					console.log('using placeholder id[' + defaultID + ']');
-				document.body.innerHTML += '<div class="advertisement ad advertising ad_holder" id="' + defaultID + '" style="width:300px;height:250px;background:#CCC;top:-500px;position:absolute;"></div>';
+          nelement=document.createElement('div');
+          nelement.innerHTML = ''<div class="advertisement ad advertising ad_holder" id="' + defaultID + '" style="width:300px;height:250px;background:#CCC;top:-500px;position:absolute;"></div>';
+          document.body.appendChild(nelement);
 			} else {
 				if (_args.verbose)
 					console.log('not using placeholder id[' + defaultID + ']');
